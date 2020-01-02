@@ -45,6 +45,17 @@ public class myDAO {
       }
     }
 
+    public List<Liste> addListe(Liste liste){
+      String insertSql =
+        "insert into LISTE(ID, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :TITRE, :DESCRIPTION, :DATECREATION)";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(insertSql).addParameter("ID",liste.getId()).addParameter("TITRE",liste.getTitre()).addParameter("DESCRIPTION",liste.getDescription()).addParameter("DATECREATION",liste.getDateCreation()).executeUpdate();
+      }
+    }
+
+
+
 
 
     public List<Liste> getListeElement(){
