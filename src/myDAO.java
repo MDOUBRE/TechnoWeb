@@ -14,17 +14,93 @@ public class myDAO {
         "SELECT * from LISTE;";
 
       try(Connection con = sql2o.open()) {
-        return con.createQuery(sql).executeAndFetch(Task.class);
+        return con.createQuery(sql).executeAndFetch(Liste.class);
       }
     }
+
+    public List<Liste> getTitreListe(){
+      String sql =
+        "SELECT TITRE from LISTE;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Liste.class);
+      }
+    }
+
+    public List<Liste> getDescriptionListe(){
+      String sql =
+        "SELECT DESCRIPTION from LISTE;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Liste.class);
+      }
+    }
+
+    public List<Liste> getIdListe(){
+      String sql =
+        "SELECT ID from LISTE;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Liste.class);
+      }
+    }
+
+
 
     public List<Liste> getListeElement(){
       String sql =
         "SELECT * from ELEMENT;";
 
       try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Element.class);
+      }
+    }
+
+    public List<Liste> getTitreElement(){
+      String sql =
+        "SELECT TITRE from ELEMENT;";
+
+      try(Connection con = sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Task.class);
       }
     }
+
+    public List<Liste> getDescriptionElement(){
+      String sql =
+        "SELECT DESCRIPTION from ELEMENT;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Task.class);
+      }
+    }
+
+    public List<Liste> getIdElement(){
+      String sql =
+        "SELECT ID from ELEMENT;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Task.class);
+      }
+    }
+
+    public List<Liste> getIdListeElement(){
+      String sql =
+        "SELECT IDLISTE from ELEMENT;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Task.class);
+      }
+    }
+
+    public List<Liste> getDateCreationElement(){
+      String sql =
+        "SELECT DATECREATION from ELEMENT;";
+
+      try(Connection con = sql2o.open()) {
+        return con.createQuery(sql).executeAndFetch(Task.class);
+      }
+    }
+
+
 
 }
