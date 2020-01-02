@@ -1,5 +1,3 @@
-import org.h2.jdbc.JdbcSQLException;
-import org.h2.message.DbException;
 
 import java.sql.Array;
 import java.sql.Connection;
@@ -10,28 +8,72 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 
-// Chargement du driver JDBC pour MySQL
-// Là vous verrez vite si vous avez bien fait le boulot d'importation de la librairie
-		String nomDriver = "org.h2.Driver";
-		try
-        {
-		    Class.forName(nomDriver); 
-		}
-        catch(ClassNotFoundException cnfe)
-        {
-			JOptionPane.showMessageDialog(null, "Erreur de chargement de driver de base de données", "La classe "+nomDriver+" n'a pas été trouvée", JOptionPane.ERROR_MESSAGE);			
-		    dispose ();
-		}
-		System.out.println ("Driver H2 Database chargé...");
-
-
 public class Main{
-    public static void main(String[] args){
-         
-        Liste DVD=new Liste();
-        DVD.setDescription("Cette liste est une liste de DVD que l'on a.\n");
-        Element DVD1=new Element();
-        DVD.ajouteElement(DVD1);
-        
-    }
+
+				// JDBC driver name and database URL
+	static final String JDBC_DRIVER = "org.h2.Driver";
+	static final String DB_URL = "jdbc:h2:~/bddtest";
+
+	//  Database credentials
+	static final String USER = "nicolas";
+	static final String PASS = "nicolas";
+
+	public static void main(String[] args) {
+		 Connection conn = null;
+		 Statement stmt = null;
+		 try {
+				// STEP 1: Register JDBC driver
+				Class.forName(JDBC_DRIVER);
+
+				//STEP 2: Open a connection
+				System.out.println("Connecting to database...");
+				conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+				//STEP 3: Execute a query
+				System.out.println("Creating table in given database...");
+				stmt = conn.createStatement();
+				String sql =  "CREATE TABLE   REGISTRATION " +
+					 "(id INTEGER not NULL, " +
+					 " first VARCHAR(255), " +
+					 " last VARCHAR(255), " +
+					 " age INTEGER, " +
+					 " PRIMARY KEY ( id ))";
+				stmt.executeUpdate(sql);
+				System.out.println("Created table in given database...");
+
+				// STEP 4: Clean-up environment
+				stmt.close();
+				conn.close();
+		 } catch(SQLException se) {
+				//Handle errors for JDBC
+				se.printStackTrace();
+		 } catch(Exception e) {
+				//Handle errors for Class.forName
+				e.printStackTrace();
+		 } finally {
+				//finally block used to close resources
+				try{
+					 if(stmt!=null) stmt.close();
+				} catch(SQLException se2) {
+				} // nothing we can do
+				try {
+					 if(conn!=null) conn.close();
+				} catch(SQLException se){
+					 se.printStackTrace();
+				} //end finally try
+		 } //end try
+		 System.out.println("Goodbye!");
+	}
 }
+
+
+/*
+create table Element (
+id integer primary key,
+titre varchar(255),
+description varchar(255),
+datecreation date,
+datedernieremodif date);
+
+
+*/
