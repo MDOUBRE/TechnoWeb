@@ -1,11 +1,12 @@
 import java.util.*;
 
 public class Liste{
-    public int id;
-    public String titre;
-    public String description;
+    private int id;
+    private String titre;
+    private String description;
     private Date datecreation;
-    Liste(){
+
+    public Liste(){
     }
 
     public void setId(int id){

@@ -1,14 +1,14 @@
 import java.util.*;
 
 public class Element{
-    public int idListe;
-    public int id;
-    public String titre;
-    public String description;
+    private int idListe;
+    private int id;
+    private String titre;
+    private String description;
     private Date datecreation;
     private Date datedernieremodif;
 
-    Element(){
+    public Element(){
     }
 
     public void setIdListe(int idListe){

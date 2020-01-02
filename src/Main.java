@@ -11,6 +11,9 @@ public class Main{
 
 	public static void main(String[] args) {
 		System.out.println("debut");
+		Element truc = new Element();
+		truc.setId(12);
+		System.out.println(truc.getId());
 	}
 }
 
