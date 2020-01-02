@@ -1,35 +1,33 @@
+import java.util.List;
+
 public class Liste{
+    public int id;
     public String titre;
-    public String description;
-    private Element tabElement[];
-    private int i;
-
+    private Date datecreation;
     Liste(){
-    }
-
-    void ajouteElement(Element elem){
-        this.tabElement[this.i]=elem;
-        this.i=this.i+1;
-    }
-
-    void supprimeElement(Element elem){
-        this.tabElement[this.i]=elem;
     }
 
     void setTitre(String titre){
         this.titre=titre;
     }
 
-    void setDescription(String description){
-        this.description=description;
-    }
-
     String getTitre(){
         return this.titre;
     }
 
-    String getDescription(){
-        return this.description;
+    void setId(int id){
+        this.id=id;
     }
 
+    int getId(){
+        return this.id;
+    }
+
+    Date getDateCreation(){
+        return this.datecreation;
+    }
+
+    void setDateCreation(Date date){
+        this.datecreation=date;
+    }
 }

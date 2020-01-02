@@ -1,10 +1,11 @@
 import org.sql2o.*;
+import java.util.List;
 
-public class myDao {
+public class myDAO {
 
     private Sql2o sql2o;
 
-    public myDao() {
+    public myDAO() {
         this.sql2o = new Sql2o("jdbc:h2:~/bddtest", "nicolas", "nicolas");
     }
 
