@@ -1,6 +1,8 @@
 import org.sql2o.*;
 import java.util.List;
 
+import javax.lang.model.element.Element;
+
 public class myDAO {
 
     private Sql2o sql2o;
@@ -50,12 +52,17 @@ public class myDAO {
         "insert into LISTE(ID, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :TITRE, :DESCRIPTION, :DATECREATION)";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(insertSql).addParameter("ID",liste.getId()).addParameter("TITRE",liste.getTitre()).addParameter("DESCRIPTION",liste.getDescription()).addParameter("DATECREATION",liste.getDateCreation()).executeUpdate();
+        con.createQuery(insertSql)
+          .addParameter("ID",liste.getId())
+          .addParameter("TITRE",liste.getTitre())
+          .addParameter("DESCRIPTION",liste.getDescription())
+          .addParameter("DATECREATION",liste.getDateCreation())
+          .executeUpdate();
       }
     }
 
 
-    public List<Liste> getListeElement(){
+    public List<Element> getListeElement(){
       String sql =
         "SELECT * from ELEMENT;";
 
@@ -106,6 +113,21 @@ public class myDAO {
 
       try(Connection con = sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Element.class);
+      }
+    }
+
+    public List<Element> addElement(Element element){
+      String insertSql =
+        "insert into ELEMENT(ID, IDLISTE, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :IDLISTE, :TITRE, :DESCRIPTION, :DATECREATION)";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(insertSql)
+          .addParameter("ID",element.getId())
+          .addParameter("IDLISTE",element.getIdListe())
+          .addParameter("TITRE",element.getTitre())
+          .addParameter("DESCRIPTION",element.getDescription())
+          .addParameter("DATECREATION",element.getDateCreation())
+          .executeUpdate();
       }
     }
 
