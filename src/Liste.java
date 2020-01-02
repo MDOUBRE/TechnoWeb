@@ -1,18 +1,11 @@
-import java.util.List;
+import java.util.*;
 
 public class Liste{
     public int id;
     public String titre;
+    public String description;
     private Date datecreation;
     Liste(){
-    }
-
-    void setTitre(String titre){
-        this.titre=titre;
-    }
-
-    String getTitre(){
-        return this.titre;
     }
 
     void setId(int id){
@@ -23,11 +16,28 @@ public class Liste{
         return this.id;
     }
 
-    Date getDateCreation(){
-        return this.datecreation;
+    void setTitre(String titre){
+        this.titre=titre;
+    }
+
+    String getTitre(){
+        return this.titre;
+    }
+
+    void setDescription(String description){
+        this.description=description;
+    }
+
+    String getDescription(){
+        return this.description;
     }
 
     void setDateCreation(Date date){
         this.datecreation=date;
     }
+
+    Date getDateCreation(){
+        return this.datecreation;
+    }
+
 }

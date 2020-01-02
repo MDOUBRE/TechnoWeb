@@ -11,44 +11,48 @@ public class Element{
     Element(){
     }
 
-    void setDateDerniereModif(Date date){
-        this.datedernieremodif=date;
-    }
-
-    void setTitre(String titre){
-        this.titre=titre;
-    }
-
-    void setDescription(String description){
-        this.description=description;
-    }
-
-    void setId(int id){
-        this.id=id;
-    }
-
     void setIdListe(int idListe){
         this.idListe=idListe;
-    }
-
-    int getId(){
-        return this.id;
     }
 
     int getIdListe(){
         return this.idListe;
     }
 
+    void setId(int id){
+        this.id=id;
+    }
+
+    int getId(){
+        return this.id;
+    }
+
+    void setTitre(String titre){
+        this.titre=titre;
+    }
+
     String getTitre(){
         return this.titre;
+    }
+
+    void setDescription(String description){
+        this.description=description;
+    }
+
+    String getDescription(){
+        return this.description;
+    }
+
+    void setDateCreation(Date date){
+        this.datecreation=date;
     }
 
     Date getDateCreation(){
         return this.datecreation;
     }
 
-    String getDescription(){
-        return this.description;
+    void setDateDerniereModif(Date date){
+        this.datedernieremodif=date;
     }
 
     Date getDateDerniereModif(){
