@@ -7,6 +7,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.sql2o.*;
 
 public class Main{
 
@@ -27,6 +28,7 @@ public class Main{
 
 				//STEP 2: Open a connection
 				System.out.println("Connecting to database...");
+				Sql2o sql2o = new Sql2o(DB_URL, USER,PASS);
 				conn = DriverManager.getConnection(DB_URL,USER,PASS);
 
 				//STEP 3: Execute a query
@@ -75,5 +77,8 @@ description varchar(255),
 datecreation date,
 datedernieremodif date);
 
-
+create table Liste (
+id integer primary key,
+titre varchar(255),
+datecreation date);
 */
