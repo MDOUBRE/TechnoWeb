@@ -11,51 +11,51 @@ public class Element{
     Element(){
     }
 
-    void setIdListe(int idListe){
+    public void setIdListe(int idListe){
         this.idListe=idListe;
     }
 
-    int getIdListe(){
+    public int getIdListe(){
         return this.idListe;
     }
 
-    void setId(int id){
+    public void setId(int id){
         this.id=id;
     }
 
-    int getId(){
+    public int getId(){
         return this.id;
     }
 
-    void setTitre(String titre){
+    public void setTitre(String titre){
         this.titre=titre;
     }
 
-    String getTitre(){
+    public String getTitre(){
         return this.titre;
     }
 
-    void setDescription(String description){
+    public void setDescription(String description){
         this.description=description;
     }
 
-    String getDescription(){
+    public String getDescription(){
         return this.description;
     }
 
-    void setDateCreation(Date date){
+    public void setDateCreation(Date date){
         this.datecreation=date;
     }
 
-    Date getDateCreation(){
+    public Date getDateCreation(){
         return this.datecreation;
     }
 
-    void setDateDerniereModif(Date date){
+    public void setDateDerniereModif(Date date){
         this.datedernieremodif=date;
     }
 
-    Date getDateDerniereModif(){
+    public Date getDateDerniereModif(){
         return this.datedernieremodif;
     }
 
