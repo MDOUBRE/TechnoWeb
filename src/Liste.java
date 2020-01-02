@@ -5,7 +5,7 @@ public class Liste{
     private String titre;
     private String description;
     private Date datecreation;
-
+    
     public Liste(){
     }
 
