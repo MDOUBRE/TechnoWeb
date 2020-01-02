@@ -1,42 +1,43 @@
 import java.util.*;
 
 public class Liste{
-    public int id;
-    public String titre;
-    public String description;
+    private int id;
+    private String titre;
+    private String description;
     private Date datecreation;
-    Liste(){
+    
+    public Liste(){
     }
 
-    void setId(int id){
+    public void setId(int id){
         this.id=id;
     }
 
-    int getId(){
+    public int getId(){
         return this.id;
     }
 
-    void setTitre(String titre){
+    public void setTitre(String titre){
         this.titre=titre;
     }
 
-    String getTitre(){
+    public String getTitre(){
         return this.titre;
     }
 
-    void setDescription(String description){
+    public void setDescription(String description){
         this.description=description;
     }
 
-    String getDescription(){
+    public String getDescription(){
         return this.description;
     }
 
-    void setDateCreation(Date date){
+    public void setDateCreation(Date date){
         this.datecreation=date;
     }
 
-    Date getDateCreation(){
+    public Date getDateCreation(){
         return this.datecreation;
     }
 

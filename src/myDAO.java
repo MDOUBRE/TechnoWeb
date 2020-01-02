@@ -47,7 +47,7 @@ public class myDAO {
       }
     }
 
-    public List<Liste> addListe(Liste liste){
+    public void addListe(Liste liste){
       String insertSql =
         "insert into LISTE(ID, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :TITRE, :DESCRIPTION, :DATECREATION)";
 
@@ -116,7 +116,7 @@ public class myDAO {
       }
     }
 
-    public List<Element> addElement(Element element){
+    public void addElement(Element element){
       String insertSql =
         "insert into ELEMENT(ID, IDLISTE, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :IDLISTE, :TITRE, :DESCRIPTION, :DATECREATION)";
 
@@ -130,7 +130,6 @@ public class myDAO {
           .executeUpdate();
       }
     }
-
 
 
 }
