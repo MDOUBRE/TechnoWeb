@@ -1,8 +1,6 @@
 import org.sql2o.*;
 import java.util.List;
 
-import javax.lang.model.element.Element;
-
 public class myDAO {
 
     private Sql2o sql2o;
