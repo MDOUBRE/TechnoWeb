@@ -37,11 +37,10 @@ public class Main{
 
 	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
-
-		//filldb();
-
+		
 		dao.creerTable();
-		//oui.creerTableElement();
+		filldb();
+
 		List<Element> listeE = dao.getListeElement();
 		List<Liste> listeL = dao.getListeListe();
 		System.out.println(listeE);
