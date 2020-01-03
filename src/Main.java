@@ -40,8 +40,10 @@ public class Main{
 
 		//filldb();
 
-		List<Element> listeE = dao.getListeElement();
-		List<Liste> listeL = dao.getListeListe();
+		oui.creerTableListe();
+		//oui.creerTableElement();
+		List<Element> listeE = oui.getListeElement();
+		List<Liste> listeL = oui.getListeListe();
 		System.out.println(listeE);
 		System.out.println(listeL);
 

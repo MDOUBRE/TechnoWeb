@@ -9,6 +9,43 @@ public class MyDAO {
         this.sql2o = new Sql2o("jdbc:h2:~/bddtest", "nicolas", "nicolas");
     }
 
+    public void creerTableListe(){
+      String sql =
+      "CREATE TABLE LISTE(\n" +
+                        "(id integer primary key,\n" + 
+                        "titre varchar(50),\n" +
+                        "description varchar(50),\n" +
+                        "datecreation date)";
+      
+      try(Connection con = sql2o.open()) {
+        con.createQuery(sql).executeUpdate();
+      }
+    }
+
+    /*
+    create table Element (
+    id integer primary key,
+    idListe integer,
+    titre varchar(255),
+    description varchar(255),
+    datecreation date,
+    datedernieremodif date,
+    foreign key (idListe) references Liste(ID));
+    
+    create table Liste (
+    id integer primary key,
+    titre varchar(255),
+    datecreation date);
+    */
+
+    /*
+    public void creerTableElement(){
+      try(Connection con = sql2o.open()) {
+        con.createQuery("create table ELEMENT " + "(idListe integer identity, id integer identity, titre varchar(50), description varchar(50), datecreation datetime, datedernieremodif datetime)").executeAndFetch(Element.class);
+      }
+    }
+    */
+
     public List<Liste> getListeListe(){
       String sql =
         "SELECT * from LISTE;";
