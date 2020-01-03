@@ -47,15 +47,15 @@ public class MyDAO {
 
     public void addListe(Liste liste){
       String insertSql =
-        "insert into LISTE(ID, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :TITRE, :DESCRIPTION, :DATECREATION)";
+        "insert into LISTE(TITRE, DESCRIPTION, DATECREATION)" + "values (:TITRE, :DESCRIPTION, :DATECREATION)";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(insertSql)
-          .addParameter("ID",liste.getId())
+        con.createQuery(insertSql, true)
           .addParameter("TITRE",liste.getTitre())
           .addParameter("DESCRIPTION",liste.getDescription())
           .addParameter("DATECREATION",liste.getDateCreation())
-          .executeUpdate();
+          .executeUpdate()
+          .getKey();
       }
     }
 
@@ -116,16 +116,16 @@ public class MyDAO {
 
     public void addElement(Element element){
       String insertSql =
-        "insert into ELEMENT(ID, IDLISTE, TITRE, DESCRIPTION, DATECREATION)" + "values (:ID, :IDLISTE, :TITRE, :DESCRIPTION, :DATECREATION)";
+        "insert into ELEMENT(IDLISTE, TITRE, DESCRIPTION, DATECREATION)" + "values (:IDLISTE, :TITRE, :DESCRIPTION, :DATECREATION)";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(insertSql)
-          .addParameter("ID",element.getId())
+        con.createQuery(insertSql, true)
           .addParameter("IDLISTE",element.getIdListe())
           .addParameter("TITRE",element.getTitre())
           .addParameter("DESCRIPTION",element.getDescription())
           .addParameter("DATECREATION",element.getDateCreation())
-          .executeUpdate();
+          .executeUpdate()
+          .getKey();
       }
     }
 
