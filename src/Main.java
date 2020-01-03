@@ -1,16 +1,11 @@
+import java.io.*;
 import java.util.*;
-import java.sql.Array;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import freemarker.template.*;
 
 public class Main{
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
 		/*Element elementtest = new Element();
 		Liste listetest = new Liste();
@@ -33,14 +28,24 @@ public class Main{
 		System.out.println(listeL);
 
 		Configuration cfg = new Configuration(new Version("2.3.23"));
-		cfg.setClassForTemplateLoading(Main.class, "/");
-    cfg.setDefaultEncoding("UTF-8");
 		try{
-			Template template = cfg.getTemplate("test.ftl");
+			cfg.setDirectoryForTemplateLoading(new File("src"));
 		}catch(Exception E){
 			System.out.println(E);
 		}
+		cfg.setDefaultEncoding("UTF-8");
+		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+		cfg.setLogTemplateExceptions(false);
+		cfg.setWrapUncheckedExceptions(true);
+		//try{
+			Template template = cfg.getTemplate("test.ftl");
+	////////	}
+
 		Map<String, Object> templateData = new HashMap<>();
+
+		templateData.put("elements",listeE);
+		Writer out = new OutputStreamWriter(System.out);
+		template.process(templateData, out);
 
 	}
 }
