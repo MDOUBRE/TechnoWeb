@@ -14,7 +14,7 @@ public class Main{
 		listetest.setTitre("titreliste");
 		listetest.setDescription("description");*/
 
-		myDAO oui = new myDAO();
+		MyDAO oui = new MyDAO();
 
 		/*oui.addListe(listetest);
 		elementtest.setId(12);
