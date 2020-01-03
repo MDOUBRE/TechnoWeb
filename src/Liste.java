@@ -5,7 +5,7 @@ public class Liste{
     private String titre;
     private String description;
     private Date datecreation;
-    
+
     public Liste(){
     }
 
@@ -39,6 +39,11 @@ public class Liste{
 
     public Date getDateCreation(){
         return this.datecreation;
+    }
+
+    @Override
+    public String toString(){
+      return "Element : " + this.getId() + " desc : " + this.getDescription();
     }
 
 }

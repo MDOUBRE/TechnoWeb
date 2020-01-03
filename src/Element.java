@@ -59,4 +59,9 @@ public class Element{
         return this.datedernieremodif;
     }
 
+    @Override
+    public String toString(){
+      return "Element : " + this.getId() + " desc : " + this.getDescription();
+    }
+
 }
