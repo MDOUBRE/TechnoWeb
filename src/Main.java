@@ -28,6 +28,8 @@ public class Main{
 		System.out.println(elementtest.getId());
 		oui.addElement(elementtest);*/
 
+		oui.creerTableListe();
+		//oui.creerTableElement();
 		List<Element> listeE = oui.getListeElement();
 		List<Liste> listeL = oui.getListeListe();
 		System.out.println(listeE);
