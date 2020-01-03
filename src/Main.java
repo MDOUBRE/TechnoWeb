@@ -1,3 +1,6 @@
+//javac -d build -cp "lib/*" src/*.java
+//java -cp "lib/*;build" Main
+
 import java.io.*;
 import java.util.*;
 import java.sql.*;
@@ -24,7 +27,7 @@ public class Main{
 		elementtest.setDateCreation(new Date(1000));
 		System.out.println(elementtest.getId());
 		oui.addElement(elementtest);*/
-		
+
 		List<Element> listeE = oui.getListeElement();
 		List<Liste> listeL = oui.getListeListe();
 		System.out.println(listeE);
@@ -45,9 +48,9 @@ public class Main{
 	////////	}
 
 		Map<String, Object> templateData = new HashMap<>();
-
+		//createNewFile("../test.html");
 		templateData.put("elements",listeE);
-		Writer out = new OutputStreamWriter(System.out);
+		Writer out = new OutputStreamWriter(new FileOutputStream(new File("../test.html")));
 		template.process(templateData, out);
 
 	}
