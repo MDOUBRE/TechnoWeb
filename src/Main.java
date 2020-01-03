@@ -41,10 +41,10 @@ public class Main{
 
 		//filldb();
 
-		oui.creerTableListe();
+		dao.creerTableListe();
 		//oui.creerTableElement();
-		List<Element> listeE = oui.getListeElement();
-		List<Liste> listeL = oui.getListeListe();
+		List<Element> listeE = dao.getListeElement();
+		List<Liste> listeL = dao.getListeListe();
 		System.out.println(listeE);
 		System.out.println(listeL);
 

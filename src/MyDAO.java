@@ -11,14 +11,13 @@ public class MyDAO {
 
     public void creerTableListe(){
       String sql =
-      "CREATE TABLE LISTE(\n" +
-                        "(id integer primary key,\n" + 
-                        "titre varchar(50),\n" +
-                        "description varchar(50),\n" +
-                        "datecreation date)";
-      
+              "CREATE TABLE LISTE(\n" +
+              "(id integer primary key,\n" + 
+              "titre varchar(50),\n" +
+              "description varchar(50),\n" +
+              "datecreation date)";      
       try(Connection con = sql2o.open()) {
-        con.createQuery(sql).executeUpdate();
+        con.createQuery(sql, "creerTableListe").executeUpdate();
       }
     }
 
