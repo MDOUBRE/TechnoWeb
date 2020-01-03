@@ -4,7 +4,7 @@
 </head>
 <body>
   <#list elements as element>
-  ${element.id}: ${element.description}
+  ${element.id}: ${element.description} <br/>
   </#list>
 </body>
 </html>
