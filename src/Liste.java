@@ -45,5 +45,4 @@ public class Liste{
     public String toString(){
       return "Element : " + this.getId() + " desc : " + this.getDescription();
     }
-
 }

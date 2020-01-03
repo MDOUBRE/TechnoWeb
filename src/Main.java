@@ -18,7 +18,9 @@ public class Main{
 		listetest.setDateCreation(new Date(12));
 		listetest.setTitre("titreliste");
 		listetest.setDescription("description");*/
+
 		myDAO oui = new myDAO();
+
 		/*oui.addListe(listetest);
 		elementtest.setId(12);
 		elementtest.setTitre("titre");
@@ -27,6 +29,7 @@ public class Main{
 		elementtest.setDateCreation(new Date(1000));
 		System.out.println(elementtest.getId());
 		oui.addElement(elementtest);*/
+		
 		List<Element> listeE = oui.getListeElement();
 		List<Liste> listeL = oui.getListeListe();
 		System.out.println(listeE);
