@@ -31,7 +31,6 @@ public class Main{
 			elementtest.setIdListe(listUtil.getId());
 			elementtest.setDescription("une description" +i);
 			elementtest.setDateCreation(new Date(System.currentTimeMillis()));
-			System.out.println(elementtest.getId());
 			dao.addElement(elementtest);
 		}
 	}
@@ -62,6 +61,7 @@ public class Main{
 
 		Map<String, Object> templateData = new HashMap<>();
 		templateData.put("elements",listeE);
+		templateData.put("listes",listeL);
 		Writer out = new OutputStreamWriter(new FileOutputStream(new File("test.html")));
 		template.process(templateData, out);
 

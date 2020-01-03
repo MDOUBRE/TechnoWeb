@@ -43,6 +43,6 @@ public class Liste{
 
     @Override
     public String toString(){
-      return "Element : " + this.getId() + " desc : " + this.getDescription();
+      return "Liste : " + this.getId() + " titre : " + this.getTitre() + " date : " + this.getDateCreation();
     }
 }
