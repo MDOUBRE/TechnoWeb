@@ -9,16 +9,30 @@ public class MyDAO {
         this.sql2o = new Sql2o("jdbc:h2:~/bddtest", "nicolas", "nicolas");
     }
 
-    public void creerTableListe(){
+    public void creerTable(){
       String sql =
-              "CREATE TABLE LISTE(\n" +
-              "(id integer primary key,\n" + 
-              "titre varchar(50),\n" +
-              "description varchar(50),\n" +
-              "datecreation date)";      
+              "DROP TABLE LISTE IF EXISTS;";
       try(Connection con = sql2o.open()) {
-        con.createQuery(sql, "creerTableListe").executeUpdate();
+        con.createQuery(sql).executeUpdate();
       }
+
+      sql =
+              "DROP TABLE ELEMENT IF EXISTS;";
+      try(Connection con = sql2o.open()) {
+        con.createQuery(sql).executeUpdate();
+      }
+
+      sql =
+              "CREATE TABLE LISTE(id integer primary key AUTO_INCREMENT,titre varchar(50),description varchar(50),datecreation date);";
+      try(Connection con = sql2o.open()) {
+        con.createQuery(sql, "creerTable").executeUpdate();
+      }
+
+      sql = "create table Element (id integer primary key AUTO_INCREMENT,idListe integer,titre varchar(255),description varchar(255),datecreation date,datedernieremodif date,foreign key (idListe) references Liste(ID));";
+      try(Connection con = sql2o.open()) {
+        con.createQuery(sql, "creerTable").executeUpdate();
+      }
+
     }
 
     /*
@@ -30,7 +44,7 @@ public class MyDAO {
     datecreation date,
     datedernieremodif date,
     foreign key (idListe) references Liste(ID));
-    
+
     create table Liste (
     id integer primary key,
     titre varchar(255),
