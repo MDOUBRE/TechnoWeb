@@ -38,10 +38,16 @@ public class Main{
 
 	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
+<<<<<<< HEAD
 
 		//dao.creerTable();
 
 		//filldb();
+=======
+
+		dao.creerTable();
+		filldb();
+>>>>>>> 1e08ed9a831903fd9ebf391e3ff8091ca1f75edd
 
 		List<Element> listeE = dao.getListeElement();
 		List<Liste> listeL = dao.getListeListe();
