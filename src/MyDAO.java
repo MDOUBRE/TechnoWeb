@@ -7,7 +7,7 @@ public class MyDAO {
     private Sql2o sql2o;
 
     public MyDAO() {
-        this.sql2o = new Sql2o("jdbc:h2:~/bddtest2", "maxime", "maxime");
+        this.sql2o = new Sql2o("jdbc:h2:~/bddtest", "nicolas", "nicolas");
     }
 
     public void supprimerTable(){
@@ -107,8 +107,8 @@ public class MyDAO {
         "DELETE FROM ELEMENT WHERE IDLISTE=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(deleteListeSql, true).executeUpdate();
-        con.createQuery(deleteElementListeSql, true).executeUpdate();
+        con.createQuery(deleteElementListeSql, true).addParameter("id",id).executeUpdate();
+        con.createQuery(deleteListeSql, true).addParameter("id",id).executeUpdate();
       }
     }
 
@@ -187,7 +187,7 @@ public class MyDAO {
         "DELETE FROM ELEMENT WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(deleteSql, true).executeUpdate();
+        con.createQuery(deleteSql, true).addParameter("id",id).executeUpdate();
       }
     }
 
