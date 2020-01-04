@@ -9,11 +9,38 @@
     description : ${liste.description} <br/>
     date creation : ${liste.dateCreation?string.short} <br/>
     <br/>
+    <form class="form-inline" method="POST" action="/dliste">
+      <div class="form-group" style="display: none">
+        <label for="didliste">oui</label>
+        <input type="text"
+               class="form-control"
+               id="didliste"
+               name="didliste"
+               placeholder="id"
+               value="${liste.id}">
+      </div>
+      <button type="submit" class="btn btn-default">delete liste</button>
+    </form>
+    <br/>
     <#list elements as element>
       <#if element.idListe == liste.id>
         ${element.id}: ${element.titre} <br/>
         ${element.description} <br/>
-        ${element.dateCreation?string.short} <br/><br/>
+        ${element.dateCreation?string.short} <br/>
+        <form class="form-inline" method="POST" action="/delement">
+          <div class="form-group" style="display: none">
+            <label for="didelement">oui</label>
+            <input type="text"
+                   class="form-control"
+                   id="didelement"
+                   name="didelement"
+                   placeholder="id"
+                   value="${element.id}">
+          </div>
+          <button type="submit" class="btn btn-default">delete element</button>
+        </form>
+        <br>
+        <br/>
       </#if>
     </#list>
     <br/>
