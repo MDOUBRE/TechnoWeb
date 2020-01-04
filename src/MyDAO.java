@@ -1,5 +1,6 @@
 import org.sql2o.*;
 import java.util.List;
+import java.util.Date;
 
 public class MyDAO {
 
@@ -47,30 +48,7 @@ public class MyDAO {
       }
 
     }
-
-    /*
-    create table Element (
-    id integer primary key,
-    idListe integer,
-    titre varchar(255),
-    description varchar(255),
-    datecreation date,
-    datedernieremodif date,
-    foreign key (idListe) references Liste(ID));
-
-    create table Liste (
-    id integer primary key,
-    titre varchar(255),
-    datecreation date);
-    */
-
-    /*
-    public void creerTableElement(){
-      try(Connection con = sql2o.open()) {
-        con.createQuery("create table ELEMENT " + "(idListe integer identity, id integer identity, titre varchar(50), description varchar(50), datecreation datetime, datedernieremodif datetime)").executeAndFetch(Element.class);
-      }
-    }
-    */
+    
 
     public List<Liste> getListeListe(){
       String sql =
@@ -116,7 +94,7 @@ public class MyDAO {
         con.createQuery(insertSql, true)
           .addParameter("TITRE",liste.getTitre())
           .addParameter("DESCRIPTION",liste.getDescription())
-          .addParameter("DATECREATION",liste.getDateCreation())
+          .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
       }
@@ -186,7 +164,7 @@ public class MyDAO {
           .addParameter("IDLISTE",element.getIdListe())
           .addParameter("TITRE",element.getTitre())
           .addParameter("DESCRIPTION",element.getDescription())
-          .addParameter("DATECREATION",element.getDateCreation())
+          .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
       }
