@@ -48,7 +48,7 @@ public class MyDAO {
       }
 
     }
-    
+
 
     public List<Liste> getListeListe(){
       String sql =
@@ -97,6 +97,18 @@ public class MyDAO {
           .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
+      }
+    }
+
+    public void deleteListe(int id){
+      String deleteListeSql =
+        "DELETE FROM LISTE WHERE ID=:id;";
+      String deleteElementListeSql =
+        "DELETE FROM ELEMENT WHERE IDLISTE=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(deleteListeSql, true).executeUpdate();
+        con.createQuery(deleteElementListeSql, true).executeUpdate();
       }
     }
 
@@ -167,6 +179,15 @@ public class MyDAO {
           .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
+      }
+    }
+
+    public void deleteElement(int id){
+      String deleteSql =
+        "DELETE FROM ELEMENT WHERE ID=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(deleteSql, true).executeUpdate();
       }
     }
 
