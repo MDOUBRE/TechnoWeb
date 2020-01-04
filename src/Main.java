@@ -11,6 +11,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import freemarker.template.*;
+import spark.Spark;
 
 public class Main{
 	public static MyDAO dao = new MyDAO();
@@ -38,16 +39,17 @@ public class Main{
 	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
 
+		//dao.creerTable();
+
 		//filldb();
 
-		dao.creerTable();
-		//oui.creerTableElement();
 		List<Element> listeE = dao.getListeElement();
 		List<Liste> listeL = dao.getListeListe();
 		System.out.println(listeE);
 		System.out.println(listeL);
 
 		Configuration cfg = new Configuration(new Version("2.3.23"));
+
 		try{
 			cfg.setDirectoryForTemplateLoading(new File("src"));
 		}catch(Exception E){
@@ -58,6 +60,73 @@ public class Main{
 		cfg.setLogTemplateExceptions(false);
 		cfg.setWrapUncheckedExceptions(true);
 
+
+		Spark.get("/", (request, response) -> {
+
+      StringWriter writer = new StringWriter();
+
+      try {
+          Template formTemplate = cfg.getTemplate("test.ftl");
+					Map<String, Object> templateData = new HashMap<>();
+					templateData.put("elements",dao.getListeElement());
+					templateData.put("listes",dao.getListeListe());
+          formTemplate.process(templateData, writer);
+      } catch (Exception e) {
+          Spark.halt(500);
+      }
+
+      return writer;
+	  });
+
+		Spark.post("/rliste", (request, response) -> {
+      StringWriter writer = new StringWriter();
+
+      try {
+        String titre = request.queryParams("titre") != null ? request.queryParams("titre") : "Titre";
+        String desc = request.queryParams("description") != null ? request.queryParams("description") : "description de la liste";
+
+				Liste listeARajouter = new Liste();
+				listeARajouter.setTitre(titre);
+				listeARajouter.setDescription(desc);
+				dao.addListe(listeARajouter);
+
+				Template formTemplate = cfg.getTemplate("test.ftl");
+				Map<String, Object> templateData = new HashMap<>();
+				templateData.put("elements",dao.getListeElement());
+				templateData.put("listes",dao.getListeListe());
+				formTemplate.process(templateData, writer);
+      } catch (Exception e) {
+        Spark.halt(500);
+    	}
+
+      return writer;
+    });
+
+		Spark.post("/relement", (request, response) -> {
+      StringWriter writer = new StringWriter();
+
+      try {
+        String titre = request.queryParams("titre") != null ? request.queryParams("titre") : "Titre";
+        String desc = request.queryParams("description") != null ? request.queryParams("description") : "description de la liste";
+
+				Element elementARajouter = new Element();
+				elementARajouter.setTitre(titre);
+				elementARajouter.setDescription(desc);
+				dao.addElement(elementARajouter);
+
+				Template formTemplate = cfg.getTemplate("test.ftl");
+				Map<String, Object> templateData = new HashMap<>();
+				templateData.put("elements",dao.getListeElement());
+				templateData.put("listes",dao.getListeListe());
+				formTemplate.process(templateData, writer);
+      } catch (Exception e) {
+        Spark.halt(500);
+    	}
+
+      return writer;
+    });
+
+		/*
 		Template template = cfg.getTemplate("test.ftl");
 
 
@@ -66,7 +135,7 @@ public class Main{
 		templateData.put("listes",listeL);
 		Writer out = new OutputStreamWriter(new FileOutputStream(new File("test.html")));
 		template.process(templateData, out);
-
+		*/
 	}
 }
 

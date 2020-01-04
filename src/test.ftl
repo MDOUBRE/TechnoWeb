@@ -16,6 +16,49 @@
         ${element.dateCreation?string.short} <br/>
       </#if>
     </#list>
+    <br/>
+    <a>rajouter element</a>
+    <form class="form-inline" method="POST" action="/relement">
+      <div class="form-group">
+        <label for="titre">Titre</label>
+        <input type="text"
+               class="form-control"
+               id="titre"
+               name="titre"
+               placeholder="LeTitre">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text"
+               class="form-control"
+               id="description"
+               name="description"
+               placeholder="Description de la liste">
+      </div>
+      <button type="submit" class="btn btn-default">creer liste</button>
+    </form>
+    <br/>
   </#list>
+  <br/>
+  <a>rajouter liste</a>
+  <form class="form-inline" method="POST" action="/rliste">
+    <div class="form-group">
+      <label for="titre">Titre</label>
+      <input type="text"
+             class="form-control"
+             id="titre"
+             name="titre"
+             placeholder="LeTitre">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text"
+             class="form-control"
+             id="description"
+             name="description"
+             placeholder="Description de la liste">
+    </div>
+    <button type="submit" class="btn btn-default">creer liste</button>
+  </form>
 </body>
 </html>
