@@ -6,7 +6,20 @@ public class MyDAO {
     private Sql2o sql2o;
 
     public MyDAO() {
-        this.sql2o = new Sql2o("jdbc:h2:~/bddtest", "nicolas", "nicolas");
+        this.sql2o = new Sql2o("jdbc:h2:~/bddtest2", "maxime", "maxime");
+    }
+
+    public void supprimerTable(){
+      String sql =
+              "DROP TABLE LISTE;";
+      try(Connection con = sql2o.open()) {
+        con.createQuery(sql).executeUpdate();
+      }
+      sql =
+              "DROP TABLE ELEMENT;";
+      try(Connection con = sql2o.open()) {
+        con.createQuery(sql).executeUpdate();
+      }
     }
 
     public void creerTable(){

@@ -38,6 +38,8 @@ public class Main{
 
 	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
+		
+		//dao.supprimerTable();
 		//dao.creerTable();
 		//filldb();
 
@@ -98,7 +100,7 @@ public class Main{
     	}
 
       return writer;
-    });
+      });
 
 		Spark.post("/relement", (request, response) -> {
       StringWriter writer = new StringWriter();
@@ -122,7 +124,7 @@ public class Main{
     	}
 
       return writer;
-    });
+      });
 
 		/*
 		Template template = cfg.getTemplate("test.ftl");
