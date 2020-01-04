@@ -11,7 +11,6 @@
     <br/>
     <#list elements as element>
       <#if element.idListe == liste.id>
-        <p Hidden>${element.idListe}</p>
         ${element.id}: ${element.titre} <br/>
         ${element.description} <br/>
         ${element.dateCreation?string.short} <br/><br/>
@@ -20,8 +19,16 @@
     <br/>
     <a>rajouter element</a>
     <form class="form-inline" method="POST" action="/relement">
+      <div class="form-group" style="display: none">
+        <label for="eliste">oui</label>
+        <input type="text"
+               class="form-control"
+               id="eliste"
+               name="eliste"
+               placeholder="LeTitre"
+               value="${liste.id}">
+      </div>
       <div class="form-group">
-        <p Hidden id="eliste" name="eliste">${liste.id}</p>
         <label for="etitre">Titre</label>
         <input type="text"
                class="form-control"
