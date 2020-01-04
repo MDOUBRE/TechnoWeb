@@ -42,7 +42,7 @@ public class MyDAO {
         con.createQuery(sql, "creerTable").executeUpdate();
       }
 
-      sql = "create table Element (id integer primary key AUTO_INCREMENT,idListe integer,titre varchar(255),description varchar(255),datecreation date,datedernieremodif date,foreign key (idListe) references Liste(ID));";
+      sql = "create table Element (id integer primary key AUTO_INCREMENT,idListe integer,statut integer,titre varchar(255),description varchar(255),datecreation date,datedernieremodif date,foreign key (idListe) references Liste(ID));";
       try(Connection con = sql2o.open()) {
         con.createQuery(sql, "creerTable").executeUpdate();
       }
@@ -169,16 +169,26 @@ public class MyDAO {
 
     public void addElement(Element element){
       String insertSql =
-        "insert into ELEMENT(IDLISTE, TITRE, DESCRIPTION, DATECREATION)" + "values (:IDLISTE, :TITRE, :DESCRIPTION, :DATECREATION)";
+        "insert into ELEMENT(IDLISTE, STATUT, TITRE, DESCRIPTION, DATECREATION)" + "values (:IDLISTE, :STATUT, :TITRE, :DESCRIPTION, :DATECREATION)";
 
       try(Connection con = sql2o.open()) {
         con.createQuery(insertSql, true)
           .addParameter("IDLISTE",element.getIdListe())
+          .addParameter("STATUT",0)
           .addParameter("TITRE",element.getTitre())
           .addParameter("DESCRIPTION",element.getDescription())
           .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
+      }
+    }
+
+    public void faitElement(int id){
+      String updateSql =
+        "UPDATE ELEMENT SET STATUT = 1 WHERE ID=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(updateSql, true).addParameter("id",id).executeUpdate();
       }
     }
 

@@ -1,7 +1,8 @@
 <html>
   <head> 
     <title>Welcome!</title>
-   
+    <link rel="stylesheet" href="CSS/reset.css"/>
+    <link rel="stylesheet" href="CSS/site.css"/>
   </head>
   <body class="corps">
     <#list listes as liste>
@@ -27,7 +28,8 @@
         <#if element.idListe == liste.id>
           ${element.id}: ${element.titre} <br/>
           ${element.description} <br/>
-          ${element.dateCreation?string.short} <br/>
+          ${element.dateCreation?string.short} <br/>          
+          ${element.statut} <br/>
           <form class="form-inline" method="POST" action="/delement">
             <div class="form-group" style="display: none">
               <label for="didelement">oui</label>
@@ -39,6 +41,18 @@
                     value="${element.id}">
             </div>
             <button type="submit" class="btn btn-default">delete element</button>
+          </form>
+          <form class="form-inline" method="POST" action="/faitelement">
+            <div class="form-group" style="display: none">
+              <label for="didelement">oui</label>
+              <input type="text"
+                    class="form-control"
+                    id="didelement"
+                    name="didelement"
+                    placeholder="id"
+                    value="${element.id}">
+            </div>
+            <button type="submit" class="btn btn-default">faitelement</button>
           </form>
           <br>
           <br/>

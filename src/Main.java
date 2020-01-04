@@ -39,7 +39,7 @@ public class Main{
 	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
 
-		//sdao.supprimerTable();
+		//dao.supprimerTable();
 		//dao.creerTable();
 		//filldb();
 
@@ -161,7 +161,7 @@ public class Main{
     	}
 
       return writer;
-    });
+		});
 
 		Spark.post("/delement", (request, response) -> {
       StringWriter writer = new StringWriter();
@@ -184,7 +184,30 @@ public class Main{
     	}
 
       return writer;
-    });
+		});
+	
+		Spark.post("/faitelement", (request, response) -> {
+			StringWriter writer = new StringWriter();
+	
+			try {
+					String elementString = request.queryParams("didelement") != null ? request.queryParams("didelement") : "1";
+					int element = Integer.parseInt(elementString);
+					dao.faitElement(element);
+	
+					Template formTemplate = cfg.getTemplate("test.ftl");
+					Map<String, Object> templateData = new HashMap<>();
+					templateData.put("elements",dao.getListeElement());
+					templateData.put("listes",dao.getListeListe());
+					formTemplate.process(templateData, writer);
+					response.redirect("/");
+			} catch (Exception e) {
+					System.out.println("erreur 3");
+					System.out.println(e);
+			Spark.halt(500);
+			}
+	
+			return writer;
+		});
 
 		/*
 		Template template = cfg.getTemplate("test.ftl");

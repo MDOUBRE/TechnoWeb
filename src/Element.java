@@ -3,6 +3,7 @@ import java.util.*;
 public class Element{
     private int idListe;
     private int id;
+    private int statut;
     private String titre;
     private String description;
     private Date datecreation;
@@ -25,6 +26,14 @@ public class Element{
 
     public int getId(){
         return this.id;
+    }
+
+    public void setStatut(int statut){
+        this.statut=statut;
+    }
+
+    public int getStatut(){
+        return this.statut;
     }
 
     public void setTitre(String titre){
