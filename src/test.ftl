@@ -42,7 +42,7 @@
                class="form-control"
                id="edescription"
                name="edescription"
-               placeholder="Description de la liste">
+               placeholder="Description de l'element">
       </div>
       <button type="submit" class="btn btn-default">creer element</button>
     </form>
