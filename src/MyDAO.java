@@ -183,7 +183,7 @@ public class MyDAO {
       }
     }
 
-    public void faitElement(int id){
+    public void faitElement(int id){      
       String updateSql =
         "UPDATE ELEMENT SET STATUT = 1 WHERE ID=:id;";
 

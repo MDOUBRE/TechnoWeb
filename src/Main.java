@@ -190,7 +190,7 @@ public class Main{
 			StringWriter writer = new StringWriter();
 	
 			try {
-					String elementString = request.queryParams("didelement") != null ? request.queryParams("didelement") : "1";
+					String elementString = request.queryParams("fidelement") != null ? request.queryParams("fidelement") : "1";
 					int element = Integer.parseInt(elementString);
 					dao.faitElement(element);
 	
