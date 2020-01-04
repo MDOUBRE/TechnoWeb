@@ -7,7 +7,7 @@ public class MyDAO {
     private Sql2o sql2o;
 
     public MyDAO() {
-        this.sql2o = new Sql2o("jdbc:h2:~/bddtest", "nicolas", "nicolas");
+        this.sql2o = new Sql2o("jdbc:h2:~/bddtest2", "maxime", "maxime");
     }
 
     public void supprimerTable(){
