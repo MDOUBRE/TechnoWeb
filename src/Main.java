@@ -113,7 +113,11 @@ public class Main{
       try {
         String titre = request.queryParams("etitre") != null ? request.queryParams("etitre") : "Titre";
         String desc = request.queryParams("edescription") != null ? request.queryParams("edescription") : "description de la liste";
-				int liste = Integer.parseInt(request.queryParams("eliste") != null ? request.queryParams("eliste") : "1");
+				String listeString = request.queryParams("eliste") != null ? request.queryParams("eliste") : "1";
+				System.out.println("Ici l'id de la liste : " + listeString);
+				System.out.println("Ici l'id de la liste 2 : " + request.queryParams("eliste"));
+
+				int liste = Integer.parseInt(listeString);
 
 				Element elementARajouter = new Element();
 				elementARajouter.setTitre(titre);
