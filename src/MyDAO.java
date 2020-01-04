@@ -1,5 +1,6 @@
 import org.sql2o.*;
 import java.util.List;
+import java.util.Date;
 
 public class MyDAO {
 
@@ -103,7 +104,7 @@ public class MyDAO {
         con.createQuery(insertSql, true)
           .addParameter("TITRE",liste.getTitre())
           .addParameter("DESCRIPTION",liste.getDescription())
-          .addParameter("DATECREATION",liste.getDateCreation())
+          .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
       }
@@ -173,7 +174,7 @@ public class MyDAO {
           .addParameter("IDLISTE",element.getIdListe())
           .addParameter("TITRE",element.getTitre())
           .addParameter("DESCRIPTION",element.getDescription())
-          .addParameter("DATECREATION",element.getDateCreation())
+          .addParameter("DATECREATION",new Date(System.currentTimeMillis()))
           .executeUpdate()
           .getKey();
       }

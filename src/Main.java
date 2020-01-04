@@ -70,7 +70,9 @@ public class Main{
 					templateData.put("listes",dao.getListeListe());
           formTemplate.process(templateData, writer);
       } catch (Exception e) {
-          Spark.halt(500);
+				System.out.println("erreur 1");
+				System.out.println(e);
+        Spark.halt(500);
       }
 
       return writer;
@@ -80,8 +82,8 @@ public class Main{
       StringWriter writer = new StringWriter();
 
       try {
-        String titre = request.queryParams("titre") != null ? request.queryParams("titre") : "Titre";
-        String desc = request.queryParams("description") != null ? request.queryParams("description") : "description de la liste";
+        String titre = request.queryParams("ltitre") != null ? request.queryParams("ltitre") : "Titre";
+        String desc = request.queryParams("ldescription") != null ? request.queryParams("ldescription") : "description de la liste";
 
 				Liste listeARajouter = new Liste();
 				listeARajouter.setTitre(titre);
@@ -93,7 +95,10 @@ public class Main{
 				templateData.put("elements",dao.getListeElement());
 				templateData.put("listes",dao.getListeListe());
 				formTemplate.process(templateData, writer);
+				response.redirect("/");
       } catch (Exception e) {
+				System.out.println("erreur 2");
+				System.out.println(e);
         Spark.halt(500);
     	}
 
@@ -104,12 +109,14 @@ public class Main{
       StringWriter writer = new StringWriter();
 
       try {
-        String titre = request.queryParams("titre") != null ? request.queryParams("titre") : "Titre";
-        String desc = request.queryParams("description") != null ? request.queryParams("description") : "description de la liste";
+        String titre = request.queryParams("etitre") != null ? request.queryParams("etitre") : "Titre";
+        String desc = request.queryParams("edescription") != null ? request.queryParams("edescription") : "description de la liste";
+				int liste = Integer.parseInt(request.queryParams("eliste") != null ? request.queryParams("eliste") : "1");
 
 				Element elementARajouter = new Element();
 				elementARajouter.setTitre(titre);
 				elementARajouter.setDescription(desc);
+				elementARajouter.setIdListe(liste);
 				dao.addElement(elementARajouter);
 
 				Template formTemplate = cfg.getTemplate("test.ftl");
@@ -117,7 +124,10 @@ public class Main{
 				templateData.put("elements",dao.getListeElement());
 				templateData.put("listes",dao.getListeListe());
 				formTemplate.process(templateData, writer);
+				response.redirect("/");
       } catch (Exception e) {
+				System.out.println("erreur 3");
+				System.out.println(e);
         Spark.halt(500);
     	}
 
