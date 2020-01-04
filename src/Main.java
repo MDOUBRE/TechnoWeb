@@ -138,6 +138,52 @@ public class Main{
       return writer;
     });
 
+		Spark.post("/dliste", (request, response) -> {
+      StringWriter writer = new StringWriter();
+
+      try {
+				String listeString = request.queryParams("didliste") != null ? request.queryParams("didliste") : "1";
+				int liste = Integer.parseInt(listeString);
+				dao.deleteListe(liste);
+
+				Template formTemplate = cfg.getTemplate("test.ftl");
+				Map<String, Object> templateData = new HashMap<>();
+				templateData.put("elements",dao.getListeElement());
+				templateData.put("listes",dao.getListeListe());
+				formTemplate.process(templateData, writer);
+				response.redirect("/");
+      } catch (Exception e) {
+				System.out.println("erreur 3");
+				System.out.println(e);
+        Spark.halt(500);
+    	}
+
+      return writer;
+    });
+
+		Spark.post("/delement", (request, response) -> {
+      StringWriter writer = new StringWriter();
+
+      try {
+				String elementString = request.queryParams("didelement") != null ? request.queryParams("didelement") : "1";
+				int element = Integer.parseInt(elementString);
+				dao.deleteElement(element);
+
+				Template formTemplate = cfg.getTemplate("test.ftl");
+				Map<String, Object> templateData = new HashMap<>();
+				templateData.put("elements",dao.getListeElement());
+				templateData.put("listes",dao.getListeListe());
+				formTemplate.process(templateData, writer);
+				response.redirect("/");
+      } catch (Exception e) {
+				System.out.println("erreur 3");
+				System.out.println(e);
+        Spark.halt(500);
+    	}
+
+      return writer;
+    });
+
 		/*
 		Template template = cfg.getTemplate("test.ftl");
 
