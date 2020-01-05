@@ -7,9 +7,8 @@
   <body class="corps">
     <#list listes as liste>
       <h2>${liste.titre}</h2>
-      id :  ${liste.id} <br/>
-      description : ${liste.description} <br/>
-      date creation : ${liste.dateCreation?string.short} <br/>
+      ${liste.description} <br/>
+      ${liste.dateCreation?string.short}
       <br/>
       <form class="form-inline" method="POST" action="/dliste">
         <div class="form-group" style="display: none">
@@ -23,13 +22,26 @@
         </div>
         <button type="submit" class="btn btn-default">delete liste</button>
       </form>
-      <br/>
       <#list elements as element>
         <#if element.idListe == liste.id>
-          ${element.id}: ${element.titre} <br/>
+          <h3>- ${element.titre}</h3>
           ${element.description} <br/>
           ${element.dateCreation?string.short} <br/>          
-          statut : ${element.statut} <br/>
+          <b>${element.statut}</b>
+          <#if element.statut == "A faire">
+            <form class="form-inline" method="POST" action="/faitelement">
+              <div class="form-group" style="display: none">
+                <label for="fidelement">oui</label>
+                <input type="text"
+                      class="form-control"
+                      id="fidelement"
+                      name="fidelement"
+                      placeholder="id"
+                      value="${element.id}">
+              </div>
+              <button type="submit" class="btn btn-default">Fait</button>
+            </form>
+          </#if>
           <form class="form-inline" method="POST" action="/delement">
             <div class="form-group" style="display: none">
               <label for="didelement">oui</label>
@@ -41,23 +53,7 @@
                     value="${element.id}">
             </div>
             <button type="submit" class="btn btn-default">delete element</button>
-          </form>
-          <#if element.statut == 0>
-            <form class="form-inline" method="POST" action="/faitelement">
-              <div class="form-group" style="display: none">
-                <label for="fidelement">oui</label>
-                <input type="text"
-                      class="form-control"
-                      id="fidelement"
-                      name="fidelement"
-                      placeholder="id"
-                      value="${element.id}">
-              </div>
-              <button type="submit" class="btn btn-default">faitelement</button>
-            </form>
-          </#if>
-          <br>
-          <br/>
+          </form>          
         </#if>
       </#list>
       <br/>
