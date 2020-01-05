@@ -100,7 +100,7 @@ public class MyDAO {
         "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(updateSql, true).addParameter("DESCRIPTION",liste.get*description()).addParameter("id",id).executeUpdate();
+        con.createQuery(updateSql, true).addParameter("DESCRIPTION",liste.getDescription()).addParameter("id",id).executeUpdate();
       }
     }
 
