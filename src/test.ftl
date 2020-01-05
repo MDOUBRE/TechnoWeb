@@ -1,6 +1,6 @@
 <html>
   <head> 
-    <title>Welcome!</title>
+    <title>The List</title>
     <link rel="stylesheet" href="CSS/reset.css"/>
     <link rel="stylesheet" href="CSS/site.css"/>
   </head>
@@ -57,19 +57,7 @@
                     placeholder="id"
                     value="${element.id}">
             </div>
-            <button type="submit" class="btn btn-default">Modifier Titre</button>
-          </form> 
-          <form class="form-inline" method="POST" action="/modifdescelement">
-            <div class="form-group" style="display: none">
-              <label for="didelement">oui</label>
-              <input type="text"
-                    class="form-control"
-                    id="didelement"
-                    name="didelement"
-                    placeholder="id"
-                    value="${element.id}">
-            </div>
-            <button type="submit" class="btn btn-default">Modifier Description</button>
+            <button type="submit" class="btn btn-default">Modifier Element</button>
           </form> 
           <form class="form-inline" method="POST" action="/delement">
             <div class="form-group" style="display: none">
