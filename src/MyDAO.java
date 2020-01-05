@@ -86,7 +86,7 @@ public class MyDAO {
       }
     }
 
-    public void setTitreListe(Liste liste, int id){      
+    public void setTitreListe(Liste liste, int id){
       String updateSql =
         "UPDATE LISTE SET TITRE = :TITRE WHERE ID=:id;";
 
@@ -95,12 +95,12 @@ public class MyDAO {
       }
     }
 
-    public void setDescriptionListe(Liste liste, int id){      
+    public void setDescriptionListe(Liste liste, int id){
       String updateSql =
         "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(updateSql, true).addParameter("DESCRIPTION",liste.get*description()).addParameter("id",id).executeUpdate();
+        con.createQuery(updateSql, true).addParameter("DESCRIPTION",liste.getDescription()).addParameter("id",id).executeUpdate();
       }
     }
 
@@ -201,7 +201,7 @@ public class MyDAO {
       }
     }
 
-    public void faitElement(int id){      
+    public void faitElement(int id){
       String updateSql =
         "UPDATE ELEMENT SET STATUT = 'Fait' WHERE ID=:id;";
 
@@ -210,7 +210,7 @@ public class MyDAO {
       }
     }
 
-    public void setTitreElement(Element element, int id){      
+    public void setTitreElement(Element element, int id){
       String updateSql =
         "UPDATE ELEMENT SET TITRE = :TITRE WHERE ID=:id;";
 
@@ -219,7 +219,7 @@ public class MyDAO {
       }
     }
 
-    public void setDescriptionElement(Element element, int id){      
+    public void setDescriptionElement(Element element, int id){
       String updateSql =
         "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
 

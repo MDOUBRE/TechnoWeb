@@ -42,12 +42,9 @@ public class Main{
 		try{
 			dao.getListeListe();
 		}catch(Exception E){
-			System.out.println(E);
-			dao.supprimerTable();
 			dao.creerTable();
 			//filldb();
 		}
-
 		List<Element> listeE = dao.getListeElement();
 		List<Liste> listeL = dao.getListeListe();
 		System.out.println(listeE);
