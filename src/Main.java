@@ -40,11 +40,10 @@ public class Main{
 		System.out.println("debut");
 
 		try{
-			dao.supprimerTable();
-			dao.creerTable();
-			//filldb();
+			dao.getListeListe();
 		}catch(Exception E){
 			System.out.println(E);
+			dao.supprimerTable();
 			dao.creerTable();
 			//filldb();
 		}
@@ -191,15 +190,15 @@ public class Main{
 
       return writer;
 		});
-	
+
 		Spark.post("/faitelement", (request, response) -> {
 			StringWriter writer = new StringWriter();
-	
+
 			try {
 					String elementString = request.queryParams("fidelement") != null ? request.queryParams("fidelement") : "1";
 					int element = Integer.parseInt(elementString);
 					dao.faitElement(element);
-	
+
 					Template formTemplate = cfg.getTemplate("test.ftl");
 					Map<String, Object> templateData = new HashMap<>();
 					templateData.put("elements",dao.getListeElement());
@@ -211,10 +210,9 @@ public class Main{
 					System.out.println(e);
 			Spark.halt(500);
 			}
-	
+
 			return writer;
 		});
 
 	}
 }
-
