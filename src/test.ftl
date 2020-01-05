@@ -24,11 +24,16 @@
       </form>
       <#list elements as element>
         <#if element.idListe == liste.id>
-          <h3>- ${element.titre}</h3>
-          ${element.description} <br/>
-          ${element.dateCreation?string.short} <br/>          
-          <b>${element.statut}</b>
+          <#if element.statut == "Fait">
+            <h3>- <strike>${element.titre}</strike></h3>
+          </#if>
           <#if element.statut == "A faire">
+            <h3>- ${element.titre}</h3>
+          </#if>
+          ${element.description} <br/>
+          ${element.dateCreation?string.short} <br/>         
+          <#if element.statut == "A faire">
+            <b>${element.statut}</b>
             <form class="form-inline" method="POST" action="/faitelement">
               <div class="form-group" style="display: none">
                 <label for="fidelement">oui</label>
@@ -57,7 +62,7 @@
         </#if>
       </#list>
       <br/>
-      <a>rajouter element</a>
+      <a>Rajouter element</a>
       <form class="form-inline" method="POST" action="/relement">
         <div class="form-group" style="display: none">
           <label for="eliste">oui</label>
@@ -84,12 +89,12 @@
                 name="edescription"
                 placeholder="Description de l'element">
         </div>
-        <button type="submit" class="btn btn-default">creer element</button>
+        <button type="submit" class="btn btn-default">Nouvel element</button>
       </form>
       <br/>
     </#list>
     <br/>
-    <a>rajouter liste</a>
+    <a>Rajouter liste</a>
     <form class="form-inline" method="POST" action="/rliste">
       <div class="form-group">
         <label for="ltitre">Titre</label>
@@ -107,7 +112,7 @@
               name="ldescription"
               placeholder="Description de la liste">
       </div>
-      <button type="submit" class="btn btn-default">creer liste</button>
+      <button type="submit" class="btn btn-default">Nouvelle liste</button>
     </form>
   </body>
 </html>

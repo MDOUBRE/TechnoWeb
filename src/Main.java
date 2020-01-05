@@ -39,9 +39,15 @@ public class Main{
 	public static void main(String[] args) throws Exception{
 		System.out.println("debut");
 
-		//dao.supprimerTable();
-		//dao.creerTable();
-		//filldb();
+		try{
+			dao.supprimerTable();
+			dao.creerTable();
+			//filldb();
+		}catch(Exception E){
+			System.out.println(E);
+			dao.creerTable();
+			//filldb();
+		}
 
 		List<Element> listeE = dao.getListeElement();
 		List<Liste> listeL = dao.getListeListe();
@@ -209,32 +215,6 @@ public class Main{
 			return writer;
 		});
 
-		/*
-		Template template = cfg.getTemplate("test.ftl");
-
-		Map<String, Object> templateData = new HashMap<>();
-		templateData.put("elements",listeE);
-		templateData.put("listes",listeL);
-		Writer out = new OutputStreamWriter(new FileOutputStream(new File("test.html")));
-		template.process(templateData, out);
-		*/
 	}
 }
 
-
-/*
-create table Element (
-id integer primary key AUTO_INCREMENT,
-idListe integer,
-titre varchar(255),
-description varchar(255),
-datecreation date,
-datedernieremodif date,
-foreign key (idListe) references Liste(ID));
-
-create table Liste (
-id integer primary key AUTO_INCREMENT,
-titre varchar(255),
-description varchar(255),
-datecreation date);
-*/
