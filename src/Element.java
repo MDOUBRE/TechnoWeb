@@ -68,6 +68,10 @@ public class Element{
         return this.datedernieremodif;
     }
 
+    public String getName(){
+      return "element";
+    }
+
     @Override
     public String toString(){
       return "Element : " + this.getId() + " desc : " + this.getDescription();

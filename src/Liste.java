@@ -41,6 +41,10 @@ public class Liste{
         return this.datecreation;
     }
 
+    public String getName(){
+      return "liste";
+    }
+
     @Override
     public String toString(){
       return "Liste : " + this.getId() + " titre : " + this.getTitre() + " date : " + this.getDateCreation();

@@ -59,6 +59,15 @@ public class MyDAO {
       }
     }
 
+    public Liste getListeById(int id){
+      String sql =
+        "SELECT * from LISTE WHERE ID = :id;";
+
+      try(Connection con = sql2o.open()) {
+        return (con.createQuery(sql).addParameter("id",id).executeAndFetch(Liste.class)).get(0);
+      }
+    }
+
     public List<Liste> getTitreListe(){
       String sql =
         "SELECT TITRE from LISTE;";
@@ -86,21 +95,21 @@ public class MyDAO {
       }
     }
 
-    public void setTitreListe(Liste liste, int id){
+    public void setTitreListe(String titreListe, int id){
       String updateSql =
         "UPDATE LISTE SET TITRE = :TITRE WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(updateSql, true).addParameter("TITRE",liste.getTitre()).addParameter("id",id).executeUpdate();
+        con.createQuery(updateSql, true).addParameter("TITRE",titreListe).addParameter("id",id).executeUpdate();
       }
     }
 
-    public void setDescriptionListe(Liste liste, int id){
+    public void setDescriptionListe(String descListe, int id){
       String updateSql =
-        "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
+        "UPDATE LISTE SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(updateSql, true).addParameter("DESCRIPTION",liste.getDescription()).addParameter("id",id).executeUpdate();
+        con.createQuery(updateSql, true).addParameter("DESCRIPTION",descListe).addParameter("id",id).executeUpdate();
       }
     }
 
@@ -137,6 +146,15 @@ public class MyDAO {
 
       try(Connection con = sql2o.open()) {
         return con.createQuery(sql).executeAndFetch(Element.class);
+      }
+    }
+
+    public Element getElementById(int id){
+      String sql =
+        "SELECT * from ELEMENT WHERE ID = :id;";
+
+      try(Connection con = sql2o.open()) {
+        return (con.createQuery(sql).addParameter("id",id).executeAndFetch(Element.class)).get(0);
       }
     }
 
@@ -210,21 +228,21 @@ public class MyDAO {
       }
     }
 
-    public void setTitreElement(Element element, int id){
+    public void setTitreElement(String titreElement, int id){
       String updateSql =
         "UPDATE ELEMENT SET TITRE = :TITRE WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(updateSql, true).addParameter("TITRE",element.getTitre()).addParameter("id",id).executeUpdate();
+        con.createQuery(updateSql, true).addParameter("TITRE",titreElement).addParameter("id",id).executeUpdate();
       }
     }
 
-    public void setDescriptionElement(Element element, int id){
+    public void setDescriptionElement(String descElement, int id){
       String updateSql =
         "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
 
       try(Connection con = sql2o.open()) {
-        con.createQuery(updateSql, true).addParameter("DESCRIPTION",element.getDescription()).addParameter("id",id).executeUpdate();
+        con.createQuery(updateSql, true).addParameter("DESCRIPTION",descElement).addParameter("id",id).executeUpdate();
       }
     }
 

@@ -45,10 +45,6 @@ public class Main{
 			dao.creerTable();
 			//filldb();
 		}
-		List<Element> listeE = dao.getListeElement();
-		List<Liste> listeL = dao.getListeListe();
-		System.out.println(listeE);
-		System.out.println(listeL);
 
 		Configuration cfg = new Configuration(new Version("2.3.23"));
 
@@ -101,7 +97,7 @@ public class Main{
 				formTemplate.process(templateData, writer);
 				response.redirect("/");
       } catch (Exception e) {
-				System.out.println("erreur 2");
+				System.out.println("erreur rliste");
 				System.out.println(e);
         Spark.halt(500);
     	}
@@ -116,11 +112,7 @@ public class Main{
         String titre = request.queryParams("etitre") != null ? request.queryParams("etitre") : "Titre";
         String desc = request.queryParams("edescription") != null ? request.queryParams("edescription") : "description de la liste";
 				String listeString = request.queryParams("eliste") != null ? request.queryParams("eliste") : "1";
-				System.out.println("Ici l'id de la liste : " + listeString);
-				System.out.println("Ici l'id de la liste 2 : " + request.queryParams("eliste"));
-
 				int liste = Integer.parseInt(listeString);
-
 				Element elementARajouter = new Element();
 				elementARajouter.setTitre(titre);
 				elementARajouter.setDescription(desc);
@@ -134,7 +126,7 @@ public class Main{
 				formTemplate.process(templateData, writer);
 				response.redirect("/");
       } catch (Exception e) {
-				System.out.println("erreur 3");
+				System.out.println("erreur relement");
 				System.out.println(e);
         Spark.halt(500);
     	}
@@ -157,7 +149,7 @@ public class Main{
 				formTemplate.process(templateData, writer);
 				response.redirect("/");
       } catch (Exception e) {
-				System.out.println("erreur 3");
+				System.out.println("erreur dlist");
 				System.out.println(e);
         Spark.halt(500);
     	}
@@ -180,7 +172,7 @@ public class Main{
 				formTemplate.process(templateData, writer);
 				response.redirect("/");
       } catch (Exception e) {
-				System.out.println("erreur 3");
+				System.out.println("erreur delement");
 				System.out.println(e);
         Spark.halt(500);
     	}
@@ -203,9 +195,86 @@ public class Main{
 					formTemplate.process(templateData, writer);
 					response.redirect("/");
 			} catch (Exception e) {
-					System.out.println("erreur 3");
+					System.out.println("erreur faitelement");
 					System.out.println(e);
 			Spark.halt(500);
+			}
+
+			return writer;
+		});
+
+		Spark.post("/form", (request, response) -> {
+			StringWriter writer = new StringWriter();
+
+			try {
+					String elementString = request.queryParams("midelement") != null ? request.queryParams("midelement") : "1";
+					String elementName = request.queryParams("name") != null ? request.queryParams("name") : "1";
+					int element = Integer.parseInt(elementString);
+					Template formTemplate = cfg.getTemplate("form.ftl");
+					Map<String, Object> templateData = new HashMap<>();
+					if(elementName.equals("element")){
+						templateData.put("element",dao.getElementById(element));
+					}else{
+						templateData.put("element",dao.getListeById(element));
+					}
+					formTemplate.process(templateData, writer);
+			} catch (Exception e) {
+					System.out.println("erreur form");
+					System.out.println(e);
+			Spark.halt(500);
+			}
+
+			return writer;
+		});
+
+		Spark.post("/modifelement", (request, response) -> {
+			StringWriter writer = new StringWriter();
+
+			try {
+					String elementTitre = request.queryParams("telement") != null ? request.queryParams("telement") : "titre";
+					String name = request.queryParams("name") != null ? request.queryParams("name") : "titre";
+					String elementDesc = request.queryParams("delement") != null ? request.queryParams("delement") : "description";
+					String elementString = request.queryParams("idelement") != null ? request.queryParams("idelement") : "1";
+					int element = Integer.parseInt(elementString);
+					dao.setTitreElement(elementTitre,element);
+					dao.setDescriptionElement(elementDesc,element);
+
+					Template formTemplate = cfg.getTemplate("test.ftl");
+					Map<String, Object> templateData = new HashMap<>();
+					templateData.put("elements",dao.getListeElement());
+					templateData.put("listes",dao.getListeListe());
+					formTemplate.process(templateData, writer);
+					response.redirect("/");
+			} catch (Exception e) {
+					System.out.println("erreur modif element");
+					System.out.println(e);
+					Spark.halt(500);
+			}
+
+			return writer;
+		});
+
+		Spark.post("/modifliste", (request, response) -> {
+			StringWriter writer = new StringWriter();
+
+			try {
+					String elementTitre = request.queryParams("telement") != null ? request.queryParams("telement") : "titre";
+					String elementDesc = request.queryParams("delement") != null ? request.queryParams("delement") : "description";
+					String elementString = request.queryParams("idelement") != null ? request.queryParams("idelement") : "1";
+					int element = Integer.parseInt(elementString);
+					dao.setTitreListe(elementTitre,element);
+					dao.setDescriptionListe(elementDesc,element);
+
+					Template formTemplate = cfg.getTemplate("test.ftl");
+					Map<String, Object> templateData = new HashMap<>();
+					templateData.put("elements",dao.getListeElement());
+					templateData.put("listes",dao.getListeListe());
+					formTemplate.process(templateData, writer);
+					response.redirect("/");
+			} catch (Exception e) {
+					System.out.println("erreur modifliste");
+					System.out.println(e);
+					Spark.halt(500);
 			}
 
 			return writer;

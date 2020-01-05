@@ -1,5 +1,5 @@
 <html>
-  <head> 
+  <head>
     <title>The List</title>
     <link rel="stylesheet" href="CSS/reset.css"/>
     <link rel="stylesheet" href="CSS/site.css"/>
@@ -22,6 +22,27 @@
         </div>
         <button type="submit" class="btn btn-default">delete liste</button>
       </form>
+      <form class="form-inline" method="POST" action="/form">
+        <div class="form-group" style="display: none">
+          <label for="midelement">oui</label>
+          <input type="text"
+                class="form-control"
+                id="midelement"
+                name="midelement"
+                placeholder="id"
+                value="${liste.id}">
+        </div>
+        <div class="form-group" style="display: none">
+          <label for="name">oui</label>
+          <input type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                placeholder="id"
+                value="${liste.name}">
+        </div>
+        <button type="submit" class="btn btn-default">Modifier Liste</button>
+      </form>
       <#list elements as element>
         <#if element.idListe == liste.id>
           <#if element.statut == "Fait">
@@ -31,7 +52,7 @@
             <h3>- ${element.titre}</h3>
           </#if>
           ${element.description} <br/>
-          ${element.dateCreation?string.short} <br/>         
+          ${element.dateCreation?string.short} <br/>
           <#if element.statut == "A faire">
             <b>${element.statut}</b>
             <form class="form-inline" method="POST" action="/faitelement">
@@ -47,18 +68,27 @@
               <button type="submit" class="btn btn-default">Fait</button>
             </form>
           </#if>
-          <form class="form-inline" method="POST" action="/modiftitreelement">
+          <form class="form-inline" method="POST" action="/form">
             <div class="form-group" style="display: none">
-              <label for="didelement">oui</label>
+              <label for="midelement">oui</label>
               <input type="text"
                     class="form-control"
-                    id="didelement"
-                    name="didelement"
+                    id="midelement"
+                    name="midelement"
                     placeholder="id"
                     value="${element.id}">
             </div>
+            <div class="form-group" style="display: none">
+              <label for="name">oui</label>
+              <input type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="id"
+                    value="${element.name}">
+            </div>
             <button type="submit" class="btn btn-default">Modifier Element</button>
-          </form> 
+          </form>
           <form class="form-inline" method="POST" action="/delement">
             <div class="form-group" style="display: none">
               <label for="didelement">oui</label>
@@ -70,7 +100,7 @@
                     value="${element.id}">
             </div>
             <button type="submit" class="btn btn-default">delete element</button>
-          </form>          
+          </form>
         </#if>
       </#list>
       <br/>
