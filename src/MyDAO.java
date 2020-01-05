@@ -86,6 +86,24 @@ public class MyDAO {
       }
     }
 
+    public void setTitreListe(Liste liste, int id){      
+      String updateSql =
+        "UPDATE LISTE SET TITRE = :TITRE WHERE ID=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(updateSql, true).addParameter("TITRE",liste.getTitre()).addParameter("id",id).executeUpdate();
+      }
+    }
+
+    public void setDescriptionListe(Liste liste, int id){      
+      String updateSql =
+        "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(updateSql, true).addParameter("DESCRIPTION",liste.get*description()).addParameter("id",id).executeUpdate();
+      }
+    }
+
     public void addListe(Liste liste){
       String insertSql =
         "insert into LISTE(TITRE, DESCRIPTION, DATECREATION)" + "values (:TITRE, :DESCRIPTION, :DATECREATION)";
@@ -189,6 +207,24 @@ public class MyDAO {
 
       try(Connection con = sql2o.open()) {
         con.createQuery(updateSql, true).addParameter("id",id).executeUpdate();
+      }
+    }
+
+    public void setTitreElement(Element element, int id){      
+      String updateSql =
+        "UPDATE ELEMENT SET TITRE = :TITRE WHERE ID=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(updateSql, true).addParameter("TITRE",element.getTitre()).addParameter("id",id).executeUpdate();
+      }
+    }
+
+    public void setDescriptionElement(Element element, int id){      
+      String updateSql =
+        "UPDATE ELEMENT SET DESCRIPTION = :DESCRIPTION WHERE ID=:id;";
+
+      try(Connection con = sql2o.open()) {
+        con.createQuery(updateSql, true).addParameter("DESCRIPTION",element.getDescription()).addParameter("id",id).executeUpdate();
       }
     }
 
